@@ -1,8 +1,8 @@
 import {
   actionTypes,
   sortTypes
-} from '../actions/actionTypes';
-import { values, memoize } from 'lodash';
+} from './actionTypes';
+import { memoize, includes } from 'lodash';
 
 /**
  * Takes a sort type and returns a boolean for if it's valid or not
@@ -10,9 +10,7 @@ import { values, memoize } from 'lodash';
  * @param sortType
  * @returns {boolean}
  */
-export const isValidSortType = memoize((sortType) => {
-  return values(sortTypes).indexOf(sortType) > -1;
-});
+export const isValidSortType = memoize((sortType) => ( includes(sortTypes, sortType) ));
 
 /**
  * Make sure sortType value stays as a valid value

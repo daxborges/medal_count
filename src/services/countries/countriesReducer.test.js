@@ -1,10 +1,11 @@
-import { actionTypes } from '../actions/actionTypes';
+import { actionTypes } from './actionTypes';
 import {
   isValidMedalCount,
   isValidCountry,
+  setTotalForCountry,
   manageCountries,
   countries
-} from './countries';
+} from './countriesReducer';
 
 const sweden = {
   "code": "SWE",
@@ -87,6 +88,13 @@ describe('isValidCountry', () => {
 
 });
 
+describe('setTotalForCountry', () => {
+
+  it('it should total all other medals and set it to a total attribute', () => {
+    expect(setTotalForCountry(sweden).total).toEqual(15);
+  });
+
+});
 
 describe('manageCountries', () => {
 
@@ -141,7 +149,7 @@ describe('countries', () => {
     expect(countries([{...sweden}], {
       type: actionTypes.SET_COUNTRIES,
       countries: validCountriesList
-    })).toEqual(expect.arrayContaining(validCountriesList));
+    })).toEqual(expect.arrayContaining(validCountriesList.map(setTotalForCountry)));
 
   });
 

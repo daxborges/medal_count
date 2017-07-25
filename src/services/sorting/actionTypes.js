@@ -6,7 +6,6 @@ export const sortTypes = {
 };
 
 export const actionTypes = {
-  SET_COUNTRIES: 'SET_COUNTRIES',
   CHANGE_SORT: 'CHANGE_SORT'
 };
 

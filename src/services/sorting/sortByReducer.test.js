@@ -1,12 +1,12 @@
 import {
   actionTypes,
   sortTypes
-} from '../actions/actionTypes';
+} from './actionTypes';
 import {
   isValidSortType,
   manageSortBy,
   sortBy
-} from './sortBy';
+} from './sortByReducer';
 
 describe('isValidSortType', () => {
 

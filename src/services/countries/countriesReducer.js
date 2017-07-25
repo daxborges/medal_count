@@ -1,5 +1,5 @@
-import actionTypes from '../actions/actionTypes';
-import { isString, isInteger, isArray, isObject } from 'lodash';
+import { actionTypes } from './actionTypes';
+import { map, isString, isInteger, isArray, isObject } from 'lodash';
 
 const COUNTRY_CODE_LENGTH = 3;
 
@@ -29,6 +29,18 @@ export const isValidCountry = (country) => {
 };
 
 /**
+ * Sets the total value on the country
+ *
+ * @param country
+ */
+export const setTotalForCountry = (country) => {
+  return {
+    ...country,
+    total: country.gold + country.silver + country.bronze
+  };
+};
+
+/**
  * Make sure all countries being set are valid
  *
  * @param state
@@ -37,7 +49,8 @@ export const isValidCountry = (country) => {
  */
 export const manageCountries = (state, countries) => {
   state = isArray(state) ? state : [];
-  return isArray(countries) ? countries.filter(isValidCountry) : state.filter(isValidCountry);
+  countries = isArray(countries) ? countries.filter(isValidCountry) : state.filter(isValidCountry);
+  return map(countries, setTotalForCountry);
 };
 
 /**
